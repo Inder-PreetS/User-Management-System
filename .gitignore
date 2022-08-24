@@ -1,0 +1,8 @@
+venv
+db.sqlite3
+media
+
+user/__pycache__
+user/migrations/__pycache__
+
+UserInfo/__pycache__

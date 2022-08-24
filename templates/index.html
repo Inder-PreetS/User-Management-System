@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="body">
+
+
+  <div class="container">
+
+    <div class="col-md-11 card mb-4  mt-3 " style="margin:5%; padding: 3%;">
+      <div class="list">
+        <h3><b>Company Users</b></h3>
+      </div>
+      <div class="table">
+        <table id="example" class="display" style="width:100%">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Images</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>DOB</th>
+              <th>Phone Number</th>
+              {% comment %} <th>Action</th> {% endcomment %}
+
+
+
+            </tr>
+          </thead>
+          {% for x in data %}
+          <tr>
+            <td>{{x.id}}</td>
+            <td>
+
+
+              {% for y in data2 %}
+              {% if y.user.id == x.id %}
+              <div class="imgs">
+                <img src="{{y.images.url}}" style="height:33px;width:33px;">
+              </div>
+              {% endif %}
+              {% endfor %}
+            </td>
+
+
+
+            <td><a href="{% url 'details' x.id %}" </a>{{x|capfirst}}</td>
+            <td>{{x.email}}</td>
+            <td>{{x.address}}</td>
+            <td>{{x.dateOfBirth}}</td>
+            <td>{{x.phoneNumber}}</td>
+            {% comment %} <td><button type="button" data-bs-toggle="modal" data-bs-target="#modal{{x.id}}"><i
+                  class="fas fa-pencil-alt"> </i></button></td> {% endcomment %}
+
+
+          </tr>
+
+          {% endfor %}
+
+
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- Modal -->
+{% for x in data %}
+<div class="form">
+  <form action="{% url 'editProfile' x.id %}" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" id="modal{{x.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {% include 'editProfile.html' %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-primary btns">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endfor %}
+
+{% endblock %}

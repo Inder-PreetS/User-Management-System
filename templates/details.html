@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-5 card mb-4  mt-3 " style="margin-left: 30%; text-align:left; padding: 5%;">
+  <div class="container">
+    <div>
+      <h4>Id : {{data.id}}</h4>
+    </div>
+
+
+    <div class="form-group">
+      <label for="Name"> <b>Name:</b> </label>
+      {{data.user_name | capfirst}}
+    </div>
+
+
+    <div class="form-group">
+      <label for="Email"> <b>Email:</b> </label>
+      {{data.email}}
+    </div>
+
+
+    <div class="form-group">
+      <label for="Number"> <b>Number:</b> </label>
+      {{data.phoneNumber}}
+    </div>
+
+    <div class="form-group">
+      <label for="DOB"> <b>DOB:</b> </label>
+      {{data.dateOfBirth}}
+    </div>
+
+
+    <div class="form-group">
+      <label for="Address"><b>Address:</b> </label>
+      {{data.address}}
+    </div>
+
+    <div class="form-group">
+      <label for="Image"> <b>Image:</b> </label>
+      {% for y in data3 %}
+      {% if y.user.id == data.id %}
+      <img style="width:33px; height:33px; text-align:left; margin:0;" src="{{y.images.url}}" />&nbsp;
+      {% endif %}
+      {% endfor %}
+    </div>
+
+
+    <div class="form-group">
+      <label for="Address"> <b>Review:</b> </label>
+      {{data2.review}}
+    </div>
+
+
+    
+    {% if user.id ==  data.id %}
+      {% comment %} {{'The user already gives the review'}} {% endcomment %}
+
+    {% else %}
+
+
+    <div class="comment-form">
+      <form action="{% url 'details' data.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="Review"> <b>Review:</b> </label>
+          <input type="text" class="form-control" placeholder="Review" name="review">
+        </div>
+
+        <div class="form-group">
+          <button type="submit" style="float:right;" class="btn btn-primary btns">Save</button>
+        </div>
+
+      </form>
+    </div>
+
+
+     {% endif%}  
+
+  </div>
+</div>
+
+
+{% endblock %}

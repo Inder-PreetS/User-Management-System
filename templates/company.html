@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="col-md-5 card mb-4  mt-3 " style="margin-left: 30%; padding: 5%;">
+    <div class='reviews'>
+      <h3>Reviews:</h3>
+
+
+      {% for x in data %}
+
+      <table class='reviewsss'>
+
+       {% comment %} <tr>
+          <th>
+            User Id:
+          </th>
+          <td>
+            {{x.userId}}
+          </td>
+        </tr>  {% endcomment %}
+
+        <tr>
+          <th>
+            Name:
+          </th>
+          <td>
+            {{x.user}}
+          </td>
+        </tr>
+
+        <tr>
+          <th>
+            Review :
+          </th>
+          <td>
+            {{x.review}}
+          </td>
+        </tr>
+
+      </table>
+
+      {% endfor %}
+
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

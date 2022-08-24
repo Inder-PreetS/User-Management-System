@@ -1,0 +1,57 @@
+
+{% block content %}
+    <div class="container">
+        <div class="body">
+
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="File">Current File: ({{x.images}})  </label>
+                <input type="file" class="form-control" placeholder="Image" name="images" multiple>
+            </div>
+
+
+            <div class="form-group">
+                <label for="Content"> Name : </label>
+                <input type="text" class="form-control" placeholder="Name" name="user_name" value="{{x.user_name}}">
+               
+            </div>
+
+
+            <div class="form-group">
+                <label for="Content"> Email : </label>
+                <input type="text" class="form-control" placeholder="Email" name="email" value="{{x.email}}">
+                
+               
+            </div>
+            
+
+            
+
+            <div class="form-group">
+                <label for="Content"> Address : </label>
+                <input type="text" class="form-control" placeholder="Address" name="address" value="{{x.address}}">
+               
+            </div>
+
+
+            <div class="form-group">
+                <label for="Content"> DOB : </label>
+                <input type="text" class="form-control" placeholder="Address" name="dateOfBirth" value="{{x.dateOfBirth}}">
+               
+            </div>
+
+
+            <div class="form-group">
+                <label for="Content"> Phone Number : </label>
+                <input type="text" class="form-control" placeholder="Address" name="phoneNumber" value="{{x.phoneNumber}}">
+               
+            </div>         
+           
+
+
+         </div>
+        </div>
+
+{% endblock %}
